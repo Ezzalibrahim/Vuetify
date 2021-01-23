@@ -74,6 +74,10 @@ export default {
           },{
             label: "Contact Us",
             url:"/Contact"  
+          },
+          {
+            label:"Dashboard",
+            url:"/Dashboard"
           }
         ]
     }
