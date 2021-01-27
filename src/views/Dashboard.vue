@@ -1,25 +1,47 @@
 <template>
-  <div>
-    <SalesGraph v-for="sale in sales" :key="`${sale.title}`" :sale="sale" />
+  <v-container>
+    <h1 class="text-center m-3">Dashboard</h1>
+    <v-row>
+      <v-col cols="12" md="4" lg="4" v-for="sale in sales" :key="`${sale.title}`">
+        <v-card class=" mb-4" >
+        <SalesGraph  :sale="sale" />
+        </v-card>
+      </v-col>
+    </v-row>
 
-    <StatisticCard
-      v-for="statistic in statistics"
-      :key="`${statistic.title}`"
-      :statistic="statistic"
-    />
+    <v-row>
+      <v-col
+        cols="6" md="6" lg="3"
+        v-for="statistic in statistics"
+        :key="`${statistic.title}`"
+      >
+        <StatisticCard
+          :statistic="statistic"
+        />
+      </v-col>
+    </v-row>
 
-    <EmployeesTable :employees="employees" @select-employee="setEmployee" />
+    <v-row>
+      <v-col cols="8">
+        <EmployeesTable :employees="employees" @select-employee="setEmployee" />
+      </v-col>
+      <v-col cols="4">
+        <EventTimeline :timeline="timeline" />
+      </v-col>
+    </v-row>
 
-    <EventTimeline :timeline="timeline" />
 
-    <v-snackbar v-model="snackbar">
+
+
+
+    <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAndUp">
       You have selected {{ selectedEmployee.name }},
       {{ selectedEmployee.title }}
       <v-btn color="pink" text @click="snackbar = false">
         Close
       </v-btn>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script>
