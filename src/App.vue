@@ -66,8 +66,8 @@ export default {
             label: "Login",
             url:"/login"
           },{
-            label: "Register",
-            url:"/Register"
+            label: "Signup",
+            url:"/signup"
           },{
             label: "About Us",
             url:"/About"
