@@ -3,8 +3,8 @@
         <h1 class="text-center">SignUp Form </h1>
         <v-row>
             <v-col>
-                <v-form ref="SignUpForm">
-                    <v-text-field label="UserName" type="text" required  :rules="NameRules"></v-text-field>
+                <v-form ref="SignUpForm" v-model="formValidty">
+                    <v-text-field label="UserName" type="text" v-model="useranme" required  :rules="NameRules"></v-text-field>
                     <v-text-field 
                         label="Email" 
                         type="email"
@@ -84,7 +84,8 @@
                             :rules="agreeToTermsRules"
                             required
                             ></v-checkbox>
-                        <v-btn type="submit" color="primary mr-4">Register</v-btn>
+                        <v-btn type="submit" color="primary mr-4" :disabled="!formValidty" >Register</v-btn>
+                        <v-btn color="success" class="mr-4 ml-4" @click="ValidateForm" >Validate Form</v-btn>
                         <v-btn @click="RestValidation" color="warning" class="mr-4">Rest Validation</v-btn>
                         <v-btn @click="Rest" color="error">Rest</v-btn>
                 </v-form>
@@ -98,6 +99,7 @@ export default {
         return {
             browsers : ['FireFox','Google Chrome','Microsoft Edge','Brave','Tore'],
             birthday : new Date().toISOString().substr(0, 10),
+            useranme:'',
             NameRules :[
                 value => !!value || 'UserName is Required',
                 value => value.length > 2 || 'the Length must be > 2'
@@ -113,7 +115,8 @@ export default {
                 value => value.includes('@') || 'Email Must Be Include @',
                 value => value.indexOf('.') - 4 > value.indexOf('@') || 'invalide Domain Name after @',
                 value => value.length -2 > value.indexOf('.') || 'invalide Domain Name after .'
-             ]
+            ],
+            formValidty : false
         }
     },
     methods: {
@@ -122,6 +125,9 @@ export default {
         },
         Rest(){
             this.$refs.SignUpForm.reset()
+        },
+        ValidateForm(){
+            this.$refs.SignUpForm.validate()
         }
     },
 }
