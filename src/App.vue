@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar app color="info" >
+    <v-app-bar app color="primary" 
+        v-ripple
+      >
       <v-toolbar-title> DoctorIno</v-toolbar-title> 
       <v-spacer></v-spacer>
       <v-btn 
@@ -11,6 +13,7 @@
         :to="link.url" >
           {{ link.label }}
       </v-btn> 
+      <v-btn @click="ToggelTheme" text rounded >Toggel Theme</v-btn>
       <!-- <v-btn text rounded to="/login" >Login</v-btn> 
       <v-btn text rounded >Register</v-btn>  -->
     </v-app-bar>
@@ -80,6 +83,11 @@ export default {
             url:"/Dashboard"
           }
         ]
+    }
+  },
+  methods: {
+    ToggelTheme(){
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark ;
     }
   },
 

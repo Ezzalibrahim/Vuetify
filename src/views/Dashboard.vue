@@ -72,7 +72,7 @@
         >
         <v-skeleton-loader
           class="mx-auto"
-          max-width="300"
+          max-width="100%"
           type="card"
         ></v-skeleton-loader>
     </v-sheet>
